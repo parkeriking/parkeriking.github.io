@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parker King</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a2e4a;
+      --accent: #2e6faf;
+      --rule:   #dce3ec;
+      --text:   #2a2a2a;
+      --muted:  #5a6a7a;
+      --bg:     #f7f9fb;
+      --white:  #ffffff;
+      --nav-w:  240px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      display: flex;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--nav-w);
+      height: 100vh;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    nav .site-name {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+
+    nav .site-sub {
+      font-size: 0.76rem;
+      color: #7fa3c4;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+
+    nav ul { list-style: none; }
+    nav ul li { margin-bottom: 0.05rem; }
+
+    nav ul li a {
+      display: block;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      color: #b5cfe6;
+      text-decoration: none;
+      font-size: 0.84rem;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+
+    /* MAIN */
+    main {
+      margin-left: var(--nav-w);
+      max-width: 860px;
+      padding: 3rem 3.5rem 5rem;
+      width: 100%;
+    }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      gap: 2.2rem;
+      align-items: flex-start;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-placeholder {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--rule);
+      border: 3px solid #c8d8ea;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.7rem;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .hero img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--rule);
+      flex-shrink: 0;
+    }
+
+    .hero-text h1 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.86rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-tagline span { color: var(--accent); }
+
+    .hero-text p {
+      font-size: 0.95rem;
+      color: var(--text);
+      max-width: 560px;
+    }
+
+    .hero-text p a { color: var(--accent); text-decoration: none; }
+    .hero-text p a:hover { text-decoration: underline; }
+
+    .hero-links {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    .hero-links a:hover { text-decoration: underline; }
+
+    /* SECTION */
+    section {
+      margin-bottom: 3rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    section h2 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.4rem;
+      display: inline-block;
+    }
+
+    section h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 1.4rem 0 0.6rem;
+    }
+
+    /* TIMELINE */
+    .entry {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0 1.4rem;
+      margin-bottom: 1.2rem;
+      align-items: start;
+    }
+
+    .entry-year {
+      font-size: 0.81rem;
+      color: var(--muted);
+      padding-top: 0.18rem;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .entry-body strong {
+      display: block;
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.96rem;
+      line-height: 1.4;
+    }
+
+    .entry-body em {
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .entry-body p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .entry-body a { color: var(--accent); text-decoration: none; }
+    .entry-body a:hover { text-decoration: underline; }
+
+    /* PUBLICATIONS */
+    .pub {
+      margin-bottom: 1.1rem;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    .pub .pub-title { font-style: italic; }
+    .pub .pub-meta { color: var(--muted); }
+    .pub a { color: var(--accent); text-decoration: none; font-size: 0.82rem; }
+    .pub a:hover { text-decoration: underline; }
+
+    /* PRESENTATIONS */
+    .pres {
+      margin-bottom: 0.9rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    .pres .pres-title { font-style: italic; color: var(--navy); }
+    .pres .pres-venue { color: var(--muted); font-size: 0.85rem; }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.1rem 1.2rem;
+      transition: box-shadow 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover { box-shadow: 0 4px 16px rgba(26,46,74,0.1); }
+
+    .card h3 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 0.35rem 0 0.35rem;
+      line-height: 1.4;
+    }
+
+    .card p {
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.7rem;
+      flex-grow: 1;
+    }
+
+    .card a {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    .card a:hover { text-decoration: underline; }
+
+    .tag {
+      display: inline-block;
+      background: #e8f0f8;
+      color: var(--accent);
+      font-size: 0.68rem;
+      padding: 0.08rem 0.45rem;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    /* MEDIA */
+    .media-entry {
+      margin-bottom: 1.2rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    .media-entry .media-type {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      margin-bottom: 0.1rem;
+    }
+
+    .media-entry strong { color: var(--navy); display: block; }
+    .media-entry p { color: var(--muted); font-size: 0.85rem; }
+    .media-entry a { color: var(--accent); text-decoration: none; font-size: 0.83rem; }
+    .media-entry a:hover { text-decoration: underline; }
+
+    /* FIELDWORK */
+    .field-entry {
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    .field-entry strong { color: var(--navy); }
+    .field-entry span { color: var(--muted); font-size: 0.85rem; }
+
+    /* AWARDS */
+    .award {
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    .award strong { color: var(--navy); display: block; }
+    .award span { color: var(--muted); font-size: 0.85rem; }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0.5rem 1rem;
+      font-size: 0.92rem;
+    }
+
+    .contact-grid .label { font-weight: 600; color: var(--navy); }
+    .contact-grid a { color: var(--accent); text-decoration: none; }
+    .contact-grid a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 1rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 760px) {
+      nav { position: relative; width: 100%; height: auto; padding: 1rem; }
+      nav ul { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+      body { flex-direction: column; }
+      main { margin-left: 0; padding: 1.5rem 1.2rem 3rem; }
+      .hero { flex-direction: column; }
+      .entry { grid-template-columns: 70px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="page-top">
+  <div class="site-name">Parker King</div>
+  <div class="site-sub">Geography &amp; Conservation GIS<br>University of Alabama</div>
+  <ul>
+    <li><a href="#about">Bio</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#presentations">Presentations</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#gis-apps">GIS Apps</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#fieldwork">Field Work</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero" id="about">
+    <img src="data:image/jpeg;base64,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" alt="Parker King">
+    <div class="hero-text">
+      <h1>Parker King</h1>
+      <div class="hero-tagline">
+        <span>GIS Researcher</span> &middot; Science Communicator &middot; Conservation Scientist
+      </div>
+      <p>
+        I am Lead Graduate Research Assistant in the Department of Geography at the University of Alabama
+        and a member of the <a href="https://awi.ua.edu">CONSERVE Research Group</a> at the Alabama Water Institute.
+        My work centers on science communication, tribal resilience, disaster preparedness, GIS, and
+        research co-production with Indigenous communities. I hold an FAA Part 107 Remote Pilot Certificate
+        and collaborate with federal agencies and tribal partners across the southeastern United States
+        and Northeast Oklahoma.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:piking@crimson.ua.edu">piking@crimson.ua.edu</a>
+        <a href="https://www.linkedin.com/in/kingparker19/" target="_blank">LinkedIn</a>
+        <a href="https://orcid.org/0009-0006-1748-746X" target="_blank">ORCID</a>
+        <a href="https://github.com/parkeriking" target="_blank">GitHub</a>
+        <a href="https://awi.ua.edu/news/data-storyteller-joins-conserve-research-group/" target="_blank">AWI Feature</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+
+    <div class="entry">
+      <div class="entry-year">2026</div>
+      <div class="entry-body">
+        <strong>M.S. in Geography</strong>
+        <em>University of Alabama, Tuscaloosa, AL</em>
+        <p>Focus: Environment and Society</p>
+        <p>Thesis: Co-Producing Flood Communication for Improved Utilization of Federal Flood Tools in Indian Country: A Case Study with the Wyandotte Nation</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2023</div>
+      <div class="entry-body">
+        <strong>B.A. in Geography</strong>
+        <em>University of Alabama, Tuscaloosa, AL</em>
+        <p>Concentration: Regional, Urban, and Environmental Planning</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-year">2024&ndash;2026</div>
+      <div class="entry-body">
+        <strong>Lead Graduate Research Assistant</strong>
+        <em>CONSERVE Research Group, Alabama Water Institute, University of Alabama</em>
+        <p>Geospatial analysis of native rivercane (<em>Arundinaria gigantea</em>) distribution and restoration; co-production of flood hazard communication tools with the Wyandotte Nation and Miami Tribe of Oklahoma; ArcGIS Pro raster and vector workflows; FAA Part 107 drone operations; coordination with USFWS, TNC, and NOAA/CIROH.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2022&ndash;2023</div>
+      <div class="entry-body">
+        <strong>Market Associate</strong>
+        <em>Diverse Marketing, Diverse Brands</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <div class="pub">
+      <span class="pub-title">Collaborative Communication: Co-Producing Communication Strategies with Tribal Partners in Northeast Oklahoma.</span>
+      <span class="pub-meta"> King, P., Fedoroff, M. P., Merrill, S. C., Koliba, C. J., Raub, K. B., Bell, D., Couch, G., &amp; Crow, L. (2025).</span>
+      <br><a href="https://doi.org/10.69931/001c.142857" target="_blank">doi:10.69931/001c.142857</a>
+    </div>
+
+    <div class="pub">
+      <span class="pub-title">Tribal Nations, City Officials Partner with CONSERVE to Address Rising Flood Challenges.</span>
+      <span class="pub-meta"> Byers, K. &amp; King, P. (2025). Alabama Water Institute.</span>
+      <br><a href="https://awi.ua.edu/2025/05/22/tribal-nations-city-officials-partner-with-conserve-to-address-rising-flood-challenges/" target="_blank">Read &rarr;</a>
+    </div>
+
+    <div class="pub">
+      <span class="pub-title">Co-Producing Flood Communication for Improved Utilization of Federal Flood Tools in Indian Country: A Case Study with the Wyandotte Nation.</span>
+      <span class="pub-meta"> King, P. (2026). MS Thesis, University of Alabama.</span>
+    </div>
+  </section>
+
+  <!-- PRESENTATIONS -->
+  <section id="presentations">
+    <h2>Conference Presentations</h2>
+
+    <div class="pres">
+      <div class="pres-title">The Architecture of Trust: Reframing Water Infrastructure Planning in Indian Country.</div>
+      <div class="pres-venue">CIROH Science Meeting, Tuscaloosa, AL &mdash; October 2025. (with Dr. Michael Fedoroff)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Rivercane Restoration in the Southeastern US.</div>
+      <div class="pres-venue">Native American Fish and Wildlife Society Northeast and Southeast Joint Regional Conference, Big Cypress Reservation, FL &mdash; November 2025. (with Drs. Michael Fedoroff and Katie Horton)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">From Alabama to Oklahoma: Bridging Culture and Environmental Science Through Mixed Method Storytelling.</div>
+      <div class="pres-venue">Water Resources Conference, Orange Beach, AL &mdash; September 2025. (with Ekaterina Menkina)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Collaborative Communication: Co-Producing Communication Strategies with Tribal Partners in Northeast Oklahoma.</div>
+      <div class="pres-venue">International Crisis and Risk Communication Conference, Clemson, SC &mdash; March 2025.</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Modeling Community Trust: A Collaborative Approach to Scoping Water Forecasting Needs and NOAA Product Use in Indigenous Communities of Northeast Oklahoma.</div>
+      <div class="pres-venue">CIROH Science Meeting, Tuscaloosa, AL &mdash; October 2024. (presented on behalf of project team)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Using StoryMaps as a Tool for Science Communication: A Case Study with the Wyandotte Nation and Flood Risk.</div>
+      <div class="pres-venue">CIROH Science Meeting, Tuscaloosa, AL &mdash; October 2024.</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Native Rivercane Restoration Efforts in Southeastern Watersheds.</div>
+      <div class="pres-venue">Alabama Water Resources Conference, Orange Beach, AL &mdash; September 2024. (with Michael Fedoroff and Ekaterina Menkina)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Using StoryMaps as a Tool for Science Communication: A Case Study with the Wyandotte Nation and Flood Risk.</div>
+      <div class="pres-venue">Alabama Water Resources Conference, Orange Beach, AL &mdash; September 2024.</div>
+    </div>
+  </section>
+
+  <!-- PROFESSIONAL PROJECTS -->
+  <section id="projects">
+    <h2>Professional Projects</h2>
+
+    <div class="entry">
+      <div class="entry-year">2026</div>
+      <div class="entry-body">
+        <strong>America's Ecosystem Restoration Initiative</strong>
+        <p>Compiled federal, state, and private geospatial datasets in ArcGIS Pro to inform site selection for genetic analysis of native rivercane (<em>Arundinaria gigantea</em>).</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2025</div>
+      <div class="entry-body">
+        <strong>Rivercane Bird Habitat Recording</strong>
+        <p>Planned and coordinated monitoring of rivercane habitat using the Birdweather PUC, including site selection, georeferencing, and map digitization to support habitat assessment.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2025</div>
+      <div class="entry-body">
+        <strong>CONSERVE Corner</strong>
+        <p>Co-designed and implemented a dedicated CONSERVE space within the Alabama Water Institute, including research publication displays, project impact pages, and curated fieldwork imagery.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2025</div>
+      <div class="entry-body">
+        <strong>CONSERVE Showcase</strong>
+        <p>Led planning and logistics for a student recruitment event coordinating graduate researcher presentations to highlight CONSERVE research initiatives.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2025</div>
+      <div class="entry-body">
+        <strong>Environmental Leadership Program</strong>
+        <p>Coordinated a campus visit with the Cahaba Riverkeeper's Environmental Leadership Program, including tours of the USGS Hydrological Instrumentation Facility and the NOAA National Water Center.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2024</div>
+      <div class="entry-body">
+        <strong>Rivercane Conservation Planning for Bird Habitat &mdash; SECAS Blueprint Workshop</strong>
+        <p>Planned and coordinated a federally sponsored workshop with 30 participants covering all stages from planning to logistics to support conservation efforts in Southeastern watersheds.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2024</div>
+      <div class="entry-body">
+        <strong>Modeling Community Trust</strong>
+        <p>Co-developed an ArcGIS StoryMap in partnership with the Wyandotte Nation, addressing the community's water forecasting needs and NOAA product use in Northeast Oklahoma.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2024</div>
+      <div class="entry-body">
+        <strong>Acequia Science and Tribal Engagement Support</strong>
+        <p>Created an ArcGIS StoryMap to present community-focused water resource infrastructure findings to USACE Engineering with Nature (EWN) leadership.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-year">2024</div>
+      <div class="entry-body">
+        <strong>CONSERVE Impact Pages &amp; Project Webpages</strong>
+        <p>Developed impact pages and dedicated project webpages for all CONSERVE Research Group initiatives, aligning with the Office of Research and Economic Development's broader impacts goals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIS APPS -->
+  <section id="gis-apps">
+    <h2>GIS Applications</h2>
+    <div class="cards">
+
+      <div class="card">
+        <span class="tag">StoryMap</span>
+        <h3>Journey Through the River and the Tribes Caught Between</h3>
+        <p>A narrative StoryMap exploring the relationship between rivers and tribal communities, combining spatial storytelling with Indigenous perspectives on water.</p>
+        <a href="https://arcg.is/1qS8iq0" target="_blank">View app &rarr;</a>
+      </div>
+
+      <div class="card">
+        <span class="tag">Experience Builder</span>
+        <h3>WebGIS Tool for Multi-Hazard Planning &mdash; Ottawa County</h3>
+        <p>A multi-hazard planning and emergency response tool developed for Ottawa County, Oklahoma, in partnership with Tribal leaders and emergency managers.</p>
+        <a href="https://experience.arcgis.com/experience/c4ff970b0a5044c9af11ff847978bc45/" target="_blank">View app &rarr;</a>
+      </div>
+
+      <div class="card">
+        <span class="tag">Web AppBuilder</span>
+        <h3>Home Location Finder</h3>
+        <p>Helps users explore and compare neighborhoods when deciding where to buy a home. Chains drive-time analysis, Esri Tapestry demographics, and area statistics in a three-step workflow. <em>Requires ArcGIS Online access.</em></p>
+        <a href="https://ualabama.maps.arcgis.com/apps/webappviewer/index.html?id=4149efd8beae4a7abef8b48b4dbaf686" target="_blank">View app &rarr;</a>
+      </div>
+
+      <div class="card">
+        <span class="tag">Dashboard</span>
+        <h3>311 Incidents Dashboard</h3>
+        <p>A real-time dashboard aggregating non-emergency incident reports. Includes a live map, top-10 recent reports, open/closed incident gauge, and charts broken down by incident type. Built with ArcGIS Dashboards and Arcade conditional formatting.</p>
+        <a href="https://www.arcgis.com/apps/dashboards/5a9a42e49f824e24be490c8e24bcd47b" target="_blank">View app &rarr;</a>
+      </div>
+
+      <div class="card">
+        <span class="tag">Experience Builder</span>
+        <h3>Traffic and Transportation Equity</h3>
+        <p>Compares live traffic conditions (updated every 5 minutes) with ACS vehicle availability data to explore transportation equity across the US. Synchronized dual-map view with incident charts and a data summary page.</p>
+        <a href="https://experience.arcgis.com/experience/639f92c20e5c446ba2766800bc4550c2" target="_blank">View app &rarr;</a>
+      </div>
+
+      <div class="card">
+        <span class="tag">StoryMap</span>
+        <h3>Language Across the US</h3>
+        <p>Explores linguistic diversity in the US using ACS bilingual population data. Features interactive county-level maps, a pie chart of major languages, Arcade-calculated bilingual estimates, and a Spanish/Chinese distribution slider.</p>
+        <a href="https://arcg.is/1n0W5K9" target="_blank">View app &rarr;</a>
+      </div>
+
+      <div class="card">
+        <span class="tag">StoryMap Tour</span>
+        <h3>CONSERVE Project Tour</h3>
+        <p>A guided tour through four CONSERVE Research Group projects, from the UA Learning Garden in Tuscaloosa to a tribal flood preparedness project in Oklahoma. Combines spatial narrative and photography to convey the group's national scope.</p>
+        <a href="https://arcg.is/1f1PLa" target="_blank">View app &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MEDIA -->
+  <section id="media">
+    <h2>Media</h2>
+
+    <div class="media-entry">
+      <div class="media-type">Documentary</div>
+      <strong>Native Rivercane Restoration Efforts in Southeastern Watersheds</strong>
+      <p>CONSERVE Research Group / Alabama Water Institute, 2024. Developed for presentation at the 2024 Alabama Water Resources Conference.</p>
+    </div>
+
+    <div class="media-entry">
+      <div class="media-type">Documentary</div>
+      <strong>Modeling Community Trust: Scoping Water Needs &amp; NOAA Use in Indigenous Communities</strong>
+      <p>CONSERVE Research Group / Alabama Water Institute, 2024. Developed for presentation at the 2024 CIROH Science Meeting.</p>
+    </div>
+
+    <div class="media-entry">
+      <div class="media-type">Feature</div>
+      <strong>Data Storyteller Joins CONSERVE Research Group</strong>
+      <p>Alabama Water Institute. Profile feature on joining the CONSERVE Research Group.</p>
+      <a href="https://awi.ua.edu/news/data-storyteller-joins-conserve-research-group/" target="_blank">Read &rarr;</a>
+    </div>
+
+  </section>
+
+  <!-- FIELD WORK -->
+  <section id="fieldwork">
+    <h2>Field Work</h2>
+
+    <div class="field-entry">
+      <strong>Tuscaloosa, Alabama &mdash; 2026</strong>
+      <span>Collected genetic material from two native rivercane populations and georeferenced sampling locations to verify spatial distribution and support genetic analysis.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Ottawa County, Oklahoma &mdash; April 2025</strong>
+      <span>Planned and facilitated a tabletop exercise with twenty Tribal leaders and emergency managers to strengthen flood response capacity; produced and digitized maps and coordinated data collection.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Tuscaloosa, Alabama &mdash; April 2025</strong>
+      <span>Led the relocation of the CONSERVE Learning Garden across campus by compiling spatial analyses, maps, and site proposals, and overseeing implementation following site selection.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>St. Clair County, Alabama &mdash; August 2025</strong>
+      <span>Field documentation of potential rivercane restoration sites with The Nature Conservancy and participating landowners; developed site proposals incorporating property boundaries and soil suitability analyses.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Choctaw County, Alabama &mdash; August 2025</strong>
+      <span>Coordinated a site visit with The Nature Conservancy to showcase ongoing rivercane restoration efforts and explore future collaboration opportunities.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Cherokee County, Alabama &mdash; November 2024</strong>
+      <span>Documented and georeferenced a potential rivercane restoration site in partnership with the Pelican Coast Conservancy and the US Fish and Wildlife Service Partners program.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Eutaw, Alabama &mdash; September 2024</strong>
+      <span>Visited the Westervelt Company Nursery to assess potential for propagating rivercane stock for future restoration projects.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Marion, Alabama &mdash; August 2024</strong>
+      <span>Documented and georeferenced a tour of the Alabama Aquatic Diversity Center to inform future research efforts and grant proposals.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Choctaw County, Alabama &mdash; February 2024</strong>
+      <span>Contributed to planning the largest rivercane restoration project in Alabama; documented and georeferenced areas to track progress and measure restoration success.</span>
+    </div>
+
+    <div class="field-entry">
+      <strong>Wyandotte, Oklahoma &mdash; February 2024</strong>
+      <span>Visited the Wyandotte Nation to meet with Tribal leadership; documented and georeferenced areas of concern during a guided tour of the region.</span>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <h2>Awards &amp; Certifications</h2>
+
+    <div class="award">
+      <strong>Federal Aviation Administration Remote Pilot Certificate</strong>
+      <span>Small Unmanned Aerial Systems (Part 107) &mdash; July 2025</span>
+    </div>
+
+    <div class="award">
+      <strong>CIROH Research to Operations Award</strong>
+      <span>Recognized as part of the project team for outstanding collaboration and application of research to operational practices: <em>Modeling Community Trust: A Collaborative Approach to Scoping Water Forecasting Needs and NOAA Product Use in Indigenous Communities of Northeast Oklahoma.</em> October 2024.</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <span class="label">Name</span>        <span>Parker King</span>
+      <span class="label">Email</span>       <span><a href="mailto:piking@crimson.ua.edu">piking@crimson.ua.edu</a></span>
+      <span class="label">Institution</span> <span>Alabama Water Institute, University of Alabama</span>
+      <span class="label">Address</span>     <span>1010 Cyber Hall, Box 870206, Tuscaloosa, AL 35487</span>
+      <span class="label">GitHub</span>      <span><a href="https://github.com/parkeriking" target="_blank">github.com/parkeriking</a></span>
+      <span class="label">LinkedIn</span>    <span><a href="https://www.linkedin.com/in/kingparker19/" target="_blank">linkedin.com/in/kingparker19</a></span>
+      <span class="label">ORCID</span>       <span><a href="https://orcid.org/0009-0006-1748-746X" target="_blank">0009-0006-1748-746X</a></span>
+      <span class="label">AWI Profile</span> <span><a href="https://awi.ua.edu/news/data-storyteller-joins-conserve-research-group/" target="_blank">AWI Feature &rarr;</a></span>
+    </div>
+  </section>
+
+  <footer>
+    &copy; Parker King 2026 &nbsp;&middot;&nbsp;
+    Department of Geography, University of Alabama &nbsp;&middot;&nbsp;
+    <a href="#page-top" style="color:var(--accent);">Back to top &uarr;</a>
+  </footer>
+
+</main>
+</body>
+</html>
