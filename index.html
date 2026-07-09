@@ -376,6 +376,33 @@
       padding-top: 1rem;
     }
 
+    /* POSTER / MAP THUMBNAILS */
+    .pres-thumb {
+      margin-top: 0.5rem;
+    }
+
+    .pres-thumb a img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      display: block;
+      transition: opacity 0.15s, box-shadow 0.15s;
+    }
+
+    .pres-thumb a:hover img {
+      opacity: 0.85;
+      box-shadow: 0 3px 10px rgba(26,46,74,0.15);
+    }
+
+    .pres-thumb span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-top: 0.25rem;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 760px) {
       nav { position: relative; width: 100%; height: auto; padding: 1rem; }
@@ -507,6 +534,26 @@
     <h2>Conference Presentations</h2>
 
     <div class="pres">
+      <div class="pres-title">Transposable Element Variation in Predominately Clonal Rivercane Populations.</div>
+      <div class="pres-venue">Botany 2026, Tucson, AZ &mdash; August 2026. (with Daelen Jenks, Roger Cain, and Michael Fedoroff)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Characterizing <em>Arundinaria gigantea</em> (giant rivercane) population structure through whole genome resequencing.</div>
+      <div class="pres-venue">Botany 2026, Tucson, AZ &mdash; August 2026. (with Katie Horton, Roger Cain, and Michael Fedoroff)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Mining Whole Genome Resequencing Data to Recover the Giant Rivercane Microbiome.</div>
+      <div class="pres-venue">Botany 2026, Tucson, AZ &mdash; August 2026. (with Bridget Agbesi, Roger Cain, and Michael Fedoroff)</div>
+    </div>
+
+    <div class="pres">
+      <div class="pres-title">Development of a Genomic Resource for Restoration of Giant Rivercane (<em>Arundinaria gigantea</em> (Walter) Muhl.).</div>
+      <div class="pres-venue">Botany 2026, Tucson, AZ &mdash; August 2026. (with Michael McKain, Roger Cain, and Michael Fedoroff)</div>
+    </div>
+
+    <div class="pres">
       <div class="pres-title">Rivercane Restoration in the Southeastern US.</div>
       <div class="pres-venue">Native American Fish and Wildlife Society Northeast and Southeast Joint Regional Conference, Big Cypress Reservation, FL &mdash; November 2025. (with Drs. Michael Fedoroff and Katie Horton)</div>
     </div>
@@ -529,6 +576,12 @@
     <div class="pres">
       <div class="pres-title">Modeling Community Trust: A Collaborative Approach to Scoping Water Forecasting Needs and NOAA Product Use in Indigenous Communities of Northeast Oklahoma.</div>
       <div class="pres-venue">CIROH Science Meeting, Tuscaloosa, AL &mdash; October 2024. (presented on behalf of project team)</div>
+      <div class="pres-thumb">
+        <a href="https://parkeriking.github.io/CIROH%20Science%20Poster.png" target="_blank">
+          <img src="https://parkeriking.github.io/CIROH%20Science%20Poster.png" alt="CIROH Science Meeting 2024 Poster" loading="lazy">
+        </a>
+        <span>View poster &rarr;</span>
+      </div>
     </div>
 
     <div class="pres">
@@ -539,12 +592,19 @@
     <div class="pres">
       <div class="pres-title">Native Rivercane Restoration Efforts in Southeastern Watersheds.</div>
       <div class="pres-venue">Alabama Water Resources Conference, Orange Beach, AL &mdash; September 2024. (with Michael Fedoroff and Ekaterina Menkina)</div>
+      <div class="pres-thumb">
+        <a href="https://parkeriking.github.io/ALWRC%20Poster%2024.png" target="_blank">
+          <img src="https://parkeriking.github.io/ALWRC%20Poster%2024.png" alt="ALWRC 2024 Poster" loading="lazy">
+        </a>
+        <span>View poster &rarr;</span>
+      </div>
     </div>
 
     <div class="pres">
       <div class="pres-title">Using StoryMaps as a Tool for Science Communication: A Case Study with the Wyandotte Nation and Flood Risk.</div>
       <div class="pres-venue">Alabama Water Resources Conference, Orange Beach, AL &mdash; September 2024.</div>
     </div>
+
   </section>
 
   <!-- PROFESSIONAL PROJECTS -->
@@ -622,6 +682,21 @@
         <p>Developed impact pages and dedicated project webpages for all CONSERVE Research Group initiatives, aligning with the Office of Research and Economic Development's broader impacts goals.</p>
       </div>
     </div>
+
+    <div class="entry">
+      <div class="entry-year">2024</div>
+      <div class="entry-body">
+        <strong>University of Alabama Arboretum Mapping Project</strong>
+        <p>Surveyed the University of Alabama Arboretum and led a team to design and produce official replacement maps using GPS field collection and ArcGIS Pro.</p>
+        <div class="pres-thumb" style="margin-top:0.5rem;">
+          <a href="https://parkeriking.github.io/Arboretum%20Map%20-%20South.jpg" target="_blank">
+            <img src="https://parkeriking.github.io/Arboretum%20Map%20-%20South.jpg" alt="UA Arboretum Map" loading="lazy">
+          </a>
+          <span>View map &rarr;</span>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- GIS APPS -->
